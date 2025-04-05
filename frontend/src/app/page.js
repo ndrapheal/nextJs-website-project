@@ -1,30 +1,24 @@
+"use client";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-  CardFooter,
-} from "@/components/ui/card";
-
+import Link from "next/link";
+import UserManagement from "@/app/User/userManagerment";
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm">
-        <Card className="w-[350px]">
-          <CardHeader>
-            <CardTitle>Welcome to Next.js</CardTitle>
-            <CardDescription>Built with shadcn/ui</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <p>This is a sample card component</p>
-          </CardContent>
-          <CardFooter>
-            <Button>Get Started</Button>
-          </CardFooter>
-        </Card>
-      </div>
-    </main>
+    <>
+      <main className="container mx-auto p-4">
+        {/* <h1 className="text-2xl font-bold mb-4">Welcome to Next.js</h1>
+        <p className="mb-4">This is the home page</p>
+
+        <div className="flex gap-4">
+          <Link href="/about">
+            <Button>Go to About</Button>
+          </Link>
+          <Link href="/contact">
+            <Button variant="outline">Go to Contact</Button>
+          </Link>
+        </div> */}
+        <UserManagement/>
+      </main>
+    </>
   );
 }
