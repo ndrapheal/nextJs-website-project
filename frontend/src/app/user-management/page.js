@@ -1,3 +1,4 @@
+"use client";
 import { useState } from "react";
 
 // UI components
@@ -46,7 +47,8 @@ const badgeColor = {
 export default function UserManagement() {
   // thanh pagination
   const [currentPage, setCurrentPage] = useState(1);
-  const usersPerPage = 5; // số lượng người dùng trên mỗi trang
+  const usersPerPage = 5; // số lượng người dùng trên mỗi trang là 5
+  // tính toán chỉ số người dùng hiện tại
 
   const indexOfLastUser = currentPage * usersPerPage;
   const indexOfFirstUser = indexOfLastUser - usersPerPage;
@@ -67,10 +69,10 @@ export default function UserManagement() {
   };
 
   return (
-    <div className="p-6">
+    <div className="space-y-4">
       {/* Breadcrumb */}
       <div className="text-sm text-muted-foreground mb-2">
-        Sisyphus Ventures /{" "}
+        Category /{" "}
         <span className="text-black font-medium">User management</span>
       </div>
 
@@ -108,7 +110,7 @@ export default function UserManagement() {
           </thead>
           <tbody>
             {currentUsers.map((user, index) => (
-              <tr key={index} className="border-t hover:bg-gray-50">
+              <tr key={index} className="border-t hover:bg-neutral-100">
                 <td className="px-4 py-3">
                   <input type="checkbox" />
                 </td>
