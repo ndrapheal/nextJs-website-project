@@ -44,13 +44,13 @@ export default function NotificationSection() {
     <div className="space-y-4">
       {/* Breadcrumb */}
       <div className="text-sm text-muted-foreground mb-2">
-        Category /{" "}
-        <span className="text-black font-medium">Notifications</span>
+        Category / <span className="text-black font-medium">Notifications</span>
       </div>
-      <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-semibold">Notification</h2>
-        <Button>Add notification</Button>
-      </div>
+      {/* Heading */}
+      <h1 className="text-2xl font-bold mb-1">Notifications</h1>
+      <p className="text-sm text-muted-foreground mb-6">
+        Manage your mail.
+      </p>
 
       <Input
         placeholder="Search notifications..."
