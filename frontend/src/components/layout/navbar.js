@@ -2,24 +2,22 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Separator } from "@/components/ui/separator";
-import { ScrollArea } from "@/components/ui/scrollarea";
+
 import {
   Home,
-  Palette,
-  Database,
-  Share2,
-  Clock,
+  CircleHelp,
   Bell,
   Users,
-  Lock,
-  KeyRound,
+  ChartColumnBig,
+  Boxes,
+  ReceiptText,
   CreditCard,
-  Upload,
-  Download,
   Settings,
   FileText,
-  ExternalLink,
+  Package2,
+  Package,
+  TicketPercent,
+  LogOut,
 } from "lucide-react";
 
 const sidebarItems = [
@@ -27,30 +25,29 @@ const sidebarItems = [
     title: "GENERAL",
     items: [
       { icon: <Home size={18} />, label: "Dashboard", href: "/" },
-      { icon: <Palette size={18} />, label: "Appearance", href: "/appearance" },
-      { icon: <Database size={18} />, label: "Database", href: "/database" },
-      { icon: <Share2 size={18} />, label: "Connections", href: "/connections" },
-      { icon: <Clock size={18} />, label: "Timezones", href: "/timezones" },
+      { icon: <ChartColumnBig size={18} />, label: "Analytics", href: "/analytics" },
       { icon: <Bell size={18} />, label: "Notifications", badge: 4, href: "/notifications" },
     ],
   },
   {
     title: "CATEGORY",
     items: [
-      { icon: <Users size={18} />, label: "User management", href: "/user-management" },
-      { icon: <Lock size={18} />, label: "Security & access", href: "/security-access" },
-      { icon: <KeyRound size={18} />, label: "Authentication", href: "/authentication" },
+      { icon: <Users size={18} />, label: "Customers", href: "/user-management" },
+      { icon: <Package2 size={18} />, label: "Products", href: "/products" },
+      { icon: <Boxes size={18} />, label: "Categories", href: "/categories" },
+      { icon: <Package size={18} />, label: "Inventory", href: "/inventory" },
+      { icon: <ReceiptText size={18} />, label: "Orders", href: "/orders" },
       { icon: <CreditCard size={18} />, label: "Payments", href: "/payments" },
-      { icon: <Upload size={18} />, label: "Import data", href: "/import-data" },
-      { icon: <Download size={18} />, label: "Export data", href: "/export-data" },
+      { icon: <TicketPercent size={18} />, label: "Discounts", href: "/discount" },
+     
     ],
   },
 ];
 
 const bottomItems = [
   { icon: <Settings size={18} />, label: "Settings", href: "/settings"},
-  { icon: <FileText size={18} />, label: "Documentation", href: "/documentation" },
-  { icon: <ExternalLink size={18} />, label: "Open in browser", href: "/open-in-browser" },
+  { icon: <CircleHelp size={18} />, label: "Question", href: "/open-in-browser" },
+  { icon: <LogOut size={18} />, label: "Logout", href: "/logout" },
 ];
 
 export default function Sidebar() {

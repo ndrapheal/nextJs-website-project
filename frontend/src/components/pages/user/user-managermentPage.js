@@ -1,12 +1,16 @@
 "use client";
 import { useState } from "react";
-
+import { useSearchParams } from "next/navigation";
 // UI components
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { MoreVertical } from "lucide-react";
+
+
+// sử dụng phần search
+
 
 // dữ liệu người dùng mẫu
 
@@ -45,6 +49,17 @@ const badgeColor = {
 };
 
 export default function UserManagement() {
+
+  // sử dụng useSearchParams để lấy giá trị tìm kiếm từ URL
+  const searchParams = useSearchParams();
+  const query = searchParams.get("q")?.toLowerCase() || "";
+
+  const filteredUsers = users.filter(
+    (user) =>
+      user.name.toLowerCase().includes(query) ||
+      user.email.toLowerCase().includes(query)
+  );
+
   // thanh pagination
   const [currentPage, setCurrentPage] = useState(1);
   const usersPerPage = 5; // số lượng người dùng trên mỗi trang là 5
@@ -84,10 +99,7 @@ export default function UserManagement() {
 
       {/* Search, Filter, Add */}
       <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
-        <div className="flex gap-2 w-full max-w-md">
-          <Input placeholder="Search" className="w-full" />
-          <Button variant="outline">Filters</Button>
-        </div>
+        
         <Button className="bg-black text-white hover:bg-gray-800">
           + Add user
         </Button>
@@ -96,11 +108,9 @@ export default function UserManagement() {
       {/* Table */}
       <div className="border rounded-lg overflow-hidden">
         <table className="w-full text-sm">
-          <thead className="bg-gray-50 text-left text-muted-foreground">
+          <thead className="bg-gray-100 text-left">
             <tr>
-              <th className="px-4 py-3 font-medium">
-                <input type="checkbox" />
-              </th>
+              <th className="px-4 py-3 font-medium"></th>
               <th className="px-4 py-3 font-medium">User name</th>
               <th className="px-4 py-3 font-medium">Access</th>
               <th className="px-4 py-3 font-medium">Last active</th>
@@ -109,7 +119,7 @@ export default function UserManagement() {
             </tr>
           </thead>
           <tbody>
-            {currentUsers.map((user, index) => (
+            {filteredUsers.map((user, index) => (
               <tr key={index} className="border-t hover:bg-neutral-100">
                 <td className="px-4 py-3">
                   <input type="checkbox" />

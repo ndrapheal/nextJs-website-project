@@ -1,30 +1,35 @@
 "use client";
-import Link from "next/link";
-import { Button } from "../ui/button";
+
+import { Input } from "@/components/ui/input";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useState, useEffect } from "react";
 
 export default function Header() {
-  return (
-    <header className="border-b">
-      <div className="container mx-auto p-4">
-        <div className="flex justify-between items-center">
-          {/* Logo */}
-          <Link href="/" className="text-xl font-bold">
-            Admin Dashboard
-          </Link>
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
 
-          {/* Navigation */}
-          <nav className="flex gap-4">
-            <Link href="/">
-              <Button variant="ghost">Home</Button>
-            </Link>
-            <Link href="/about">
-              <Button variant="ghost">About</Button>
-            </Link>
-            <Link href="/contact">
-              <Button variant="ghost">Contact</Button>
-            </Link>
-          </nav>
-        </div>
+  const [search, setSearch] = useState(searchParams.get("q") || "");
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      const params = new URLSearchParams(search ? { q: search } : {});
+      router.replace(`${pathname}?${params.toString()}`);
+    }, 400); // debounce
+
+    return () => clearTimeout(timeout);
+  }, [search]);
+
+  return (
+    <header className="flex items-center justify-between px-6 py-4 border-b bg-white dark:bg-background">
+      <h1 className="text-xl font-semibold">Admin Dashboard</h1>
+
+      <div className="w-full max-w-md ml-auto">
+        <Input
+          placeholder="Search..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
       </div>
     </header>
   );
