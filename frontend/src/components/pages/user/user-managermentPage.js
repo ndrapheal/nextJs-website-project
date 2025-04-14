@@ -3,10 +3,23 @@ import { useState } from "react";
 import { useSearchParams } from "next/navigation";
 // UI components
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+} from "@/components/ui/dropdown-menu";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { MoreVertical } from "lucide-react";
+import {
+  MoreVertical,
+  User,
+  Pencil,
+  Key,
+  Download,
+  Trash2,
+} from "lucide-react";
 
 
 // sử dụng phần search
@@ -99,7 +112,6 @@ export default function UserManagement() {
 
       {/* Search, Filter, Add */}
       <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
-        
         <Button className="bg-black text-white hover:bg-gray-800">
           + Add user
         </Button>
@@ -151,7 +163,33 @@ export default function UserManagement() {
                 <td className="px-4 py-3">{user.lastActive}</td>
                 <td className="px-4 py-3">{user.dateAdded}</td>
                 <td className="px-4 py-3 text-right">
-                  <MoreVertical className="h-4 w-4 text-muted-foreground cursor-pointer" />
+                  <td className="px-4 py-3 text-right">
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <Button variant="ghost" size="icon" className="h-8 w-8">
+                          <MoreVertical className="h-4 w-4 text-muted-foreground" />
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent align="end" className="w-64">
+                        <DropdownMenuItem>
+                          <User className="h-4 w-4 mr-2" /> View profile
+                        </DropdownMenuItem>
+                        <DropdownMenuItem>
+                          <Pencil className="h-4 w-4 mr-2" /> Edit details
+                        </DropdownMenuItem>
+                        <DropdownMenuItem>
+                          <Key className="h-4 w-4 mr-2" /> Change permission
+                        </DropdownMenuItem>
+                        <DropdownMenuItem>
+                          <Download className="h-4 w-4 mr-2" /> Export details
+                        </DropdownMenuItem>
+                        <DropdownMenuSeparator />
+                        <DropdownMenuItem className="text-red-600 focus:bg-red-50">
+                          <Trash2 className="h-4 w-4 mr-2" /> Delete user
+                        </DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  </td>
                 </td>
               </tr>
             ))}

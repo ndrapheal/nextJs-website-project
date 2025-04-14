@@ -14,6 +14,7 @@ import {
   CreditCard,
   Settings,
   FileText,
+  MessageCircle,
   Package2,
   Package,
   TicketPercent,
@@ -39,7 +40,7 @@ const sidebarItems = [
       { icon: <ReceiptText size={18} />, label: "Orders", href: "/orders" },
       { icon: <CreditCard size={18} />, label: "Payments", href: "/payments" },
       { icon: <TicketPercent size={18} />, label: "Discounts", href: "/discount" },
-     
+      { icon: <MessageCircle size={18} />, label: "Feedback", href: "/feedback" },
     ],
   },
 ];

@@ -50,11 +50,6 @@ export default function NotificationSection() {
       <h1 className="text-2xl font-bold mb-1">Notifications</h1>
       <p className="text-sm text-muted-foreground mb-6">Manage your mail.</p>
 
-      <div className="flex gap-2 w-full max-w-md">
-        <Input placeholder="Search" className="w-full" />
-        <Button variant="outline">Filters</Button>
-      </div>
-
       <div className="bg-white rounded-md shadow-sm border">
         <table className="w-full text-sm">
           <thead className="bg-gray-100 text-left">

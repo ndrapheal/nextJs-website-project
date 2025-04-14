@@ -59,10 +59,6 @@ export default function PaymentTable() {
         <h1 className="text-2xl font-bold mb-1">Notifications</h1>
         <p className="text-sm text-muted-foreground mb-6">Manage your mail.</p>
 
-        <div className="flex gap-2 w-full max-w-md">
-          <Input placeholder="Search" className="w-full" />
-          <Button variant="outline">Filters</Button>
-        </div>
         <table className="min-w-full text-sm text-left">
           <thead className="bg-gray-100 text-left">
             <tr>
