@@ -8,13 +8,34 @@ import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import {
   Popover,
-  PopoverContent,
   PopoverTrigger,
+  PopoverContent,
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
 
 export function CalendarDateRangePicker({ className, date, setDate }) {
   const [open, setOpen] = React.useState(false);
+
+  // Format date range label
+  const getLabel = () => {
+    if (date?.from && date?.to) {
+      return `${format(date.from, "LLL dd, yyyy")} - ${format(
+        date.to,
+        "LLL dd, yyyy"
+      )}`;
+    }
+    if (date?.from) {
+      return format(date.from, "LLL dd, yyyy");
+    }
+    return "Pick a date range";
+  };
+
+  const handleSelect = (range) => {
+    setDate(range);
+    if (range?.from && range?.to) {
+      setOpen(false); // Close only when both dates are selected
+    }
+  };
 
   return (
     <div className={cn("grid gap-2", className)}>
@@ -22,37 +43,23 @@ export function CalendarDateRangePicker({ className, date, setDate }) {
         <PopoverTrigger asChild>
           <Button
             id="date"
-            variant={"outline"}
+            variant="outline"
             className={cn(
               "w-[260px] justify-start text-left font-normal",
               !date?.from && "text-muted-foreground"
             )}
           >
             <CalendarIcon className="mr-2 h-4 w-4" />
-            {date?.from ? (
-              date.to ? (
-                <>
-                  {format(date.from, "LLL dd, yyyy")} -{" "}
-                  {format(date.to, "LLL dd, yyyy")}
-                </>
-              ) : (
-                format(date.from, "LLL dd, yyyy")
-              )
-            ) : (
-              <span>Pick a date range</span>
-            )}
+            {getLabel()}
           </Button>
         </PopoverTrigger>
         <PopoverContent className="w-auto p-0" align="start">
           <Calendar
             initialFocus
-            mode="range"
-            defaultMonth={date?.from}
+            mode="single"
             selected={date}
-            onSelect={(range) => {
-              setDate(range);
-              setOpen(false); // đóng popover khi chọn xong
-            }}
+            defaultMonth={date?.from}
+            onSelect={handleSelect}
             numberOfMonths={2}
           />
         </PopoverContent>
